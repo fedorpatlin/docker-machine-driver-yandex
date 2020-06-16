@@ -138,6 +138,11 @@ func NewYCClient(d *Driver) (*YCClient, error) {
 		if err != nil {
 			return nil, err
 		}
+	default:
+		credentials = ycsdk.InstanceServiceAccount()
+	}
+	if credentials == nil {
+		return nil, errors.New("failed to retrieve credentials")
 	}
 
 	config := ycsdk.Config{

@@ -230,7 +230,7 @@ func (d *Driver) SetConfigFromFlags(flags drivers.DriverOptions) error {
 	case d.Token != "" && d.ServiceAccountKeyFile != "":
 		return fmt.Errorf("Yandex.Cloud driver requires one of token or service account key file, not both")
 	case d.Token == "" && d.ServiceAccountKeyFile == "":
-		return fmt.Errorf("A token or service account key file must be specified")
+		log.Info("A token or service account key file not provided. Using Yandex compute instance service account")
 	}
 
 	d.Cores = flags.Int("yandex-cores")
